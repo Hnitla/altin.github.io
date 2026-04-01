@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-  <script>emailjs.init("YOUR_PUBLIC_KEY");</script>
+  <script>emailjs.init("ZxD0-KhCX1iZpwE7_");</script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -763,7 +763,7 @@
         message:    document.getElementById('message').value,
       };
 
-      emailjs.send("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", params)
+      emailjs.send("hnitla.business", params)
         .then(() => {
           btn.textContent = 'Message Sent ✓';
           btn.style.background = 'var(--accent)';
