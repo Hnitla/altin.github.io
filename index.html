@@ -3,10 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Altin Haziri — InfoSec Portfolio</title>
+  <title>Alex Rivera — InfoSec Portfolio</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script>emailjs.init("YOUR_PUBLIC_KEY");</script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -517,7 +519,7 @@
 
   <!-- NAV -->
   <nav>
-    <div class="nav-logo">// Altin Haziri</div>
+    <div class="nav-logo">// your-name</div>
     <ul class="nav-links">
       <li><a href="#about">About</a></li>
       <li><a href="#skills">Skills</a></li>
@@ -530,7 +532,7 @@
   <div id="hero">
     <div class="hero-inner">
       <div class="hero-tag">InfoSec &amp; IT Professional</div>
-      <h1>Hi, I'm <em>Altin Haziri</em> —<br>I secure systems &amp;<br>solve problems.</h1>
+      <h1>Hi, I'm <em>Your Name</em> —<br>I secure systems &amp;<br>solve problems.</h1>
       <p class="hero-desc">
         Information Security Analyst and Help Desk specialist with a passion for protecting digital infrastructure and empowering end users.
       </p>
@@ -703,9 +705,9 @@
         <h3>Let's connect.</h3>
         <p>Whether you have an open role, want to collaborate, or just want to talk security — my inbox is always open.</p>
         <div class="contact-links">
-          <a href="mailto:@email.com" class="contact-link">
+          <a href="/cdn-cgi/l/email-protection#96eff9e3e4d6f3fbf7fffab8f5f9fb" class="contact-link">
             <span class="contact-link-label">Email</span>
-            ahaziri.business@hotmail.com
+            <span class="__cf_email__" data-cfemail="84fdebf1f6c4e1e9e5ede8aae7ebe9">[email&#160;protected]</span>
           </a>
           <a href="https://linkedin.com/in/yourhandle" class="contact-link" target="_blank">
             <span class="contact-link-label">LinkedIn</span>
@@ -748,13 +750,32 @@
     }, { threshold: 0.1 });
     document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
-    // Contact form
+    // Contact form — EmailJS
     function handleSubmit(e) {
       e.preventDefault();
       const btn = e.target.querySelector('button');
-      btn.textContent = 'Message Sent ✓';
-      btn.style.background = 'var(--accent)';
-      setTimeout(() => { btn.textContent = 'Send Message'; btn.style.background = ''; e.target.reset(); }, 3000);
+      btn.textContent = 'Sending...';
+      btn.disabled = true;
+
+      const params = {
+        from_name:  document.getElementById('name').value,
+        from_email: document.getElementById('email').value,
+        message:    document.getElementById('message').value,
+      };
+
+      emailjs.send("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", params)
+        .then(() => {
+          btn.textContent = 'Message Sent ✓';
+          btn.style.background = 'var(--accent)';
+          e.target.reset();
+          setTimeout(() => { btn.textContent = 'Send Message'; btn.style.background = ''; btn.disabled = false; }, 3000);
+        })
+        .catch((err) => {
+          console.error('EmailJS error:', err);
+          btn.textContent = 'Failed — Try Again';
+          btn.style.background = '#c0392b';
+          setTimeout(() => { btn.textContent = 'Send Message'; btn.style.background = ''; btn.disabled = false; }, 3000);
+        });
     }
   </script>
 </body>
